@@ -1,37 +1,33 @@
 
-import React from 'react';
-
-const StatusItem = ({ label, value, className }: { label: string; value: number; className?: string }) => (
-  <div className={`flex justify-between p-3 border-b ${className}`}>
-    <span>{label}:</span>
-    <span className="font-semibold">{value}</span>
-  </div>
-);
-
-export const EquipmentStatus = () => {
+const EquipmentStatus = () => {
   return (
-    <div className="border rounded-md overflow-hidden">
-      <StatusItem 
-        label="Оборудования на заводе" 
-        value={85} 
-        className="bg-gray-50 font-medium"
-      />
-      <StatusItem 
-        label="Работа по программе" 
-        value={40}
-      />
-      <StatusItem 
-        label="Выключенных" 
-        value={20}
-      />
-      <StatusItem 
-        label="В простое" 
-        value={15}
-      />
-      <StatusItem 
-        label="В аварии" 
-        value={10}
-      />
+    <div className="space-y-4">
+      <div className="flex justify-between items-center p-2 bg-gray-50 rounded-md">
+        <span>Оборудования на заводе:</span>
+        <span className="font-bold">85</span>
+      </div>
+      
+      <div className="flex justify-between items-center p-2 bg-purple-50 rounded-md">
+        <span>Работа по программе:</span>
+        <span className="font-bold">42</span>
+      </div>
+      
+      <div className="flex justify-between items-center p-2 bg-blue-50 rounded-md">
+        <span>Выключенных:</span>
+        <span className="font-bold">18</span>
+      </div>
+      
+      <div className="flex justify-between items-center p-2 bg-yellow-50 rounded-md">
+        <span>В простое:</span>
+        <span className="font-bold">15</span>
+      </div>
+      
+      <div className="flex justify-between items-center p-2 bg-red-50 rounded-md">
+        <span>В аварии:</span>
+        <span className="font-bold">10</span>
+      </div>
     </div>
   );
 };
+
+export default EquipmentStatus;

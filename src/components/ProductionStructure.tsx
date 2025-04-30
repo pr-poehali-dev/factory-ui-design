@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 // Данные структуры производства
@@ -16,14 +15,14 @@ const ProductionStructure = () => {
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
         <thead>
-          <tr className="bg-gray-50">
+          <tr className="bg-muted/30">
             <th className="border p-4 text-left font-semibold text-base">Обозначение</th>
             <th className="border p-4 text-left font-semibold text-base">Количество</th>
           </tr>
         </thead>
         <tbody>
           {productionData.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} className="hover:bg-muted/10">
               <td className="border p-4 text-base">
                 <div className="flex items-center">
                   {item.level > 0 && (

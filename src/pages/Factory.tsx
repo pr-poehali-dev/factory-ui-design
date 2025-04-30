@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -26,7 +25,7 @@ const Factory = () => {
       {/* Фильтры и настройки */}
       <div className="flex flex-wrap items-center gap-4 mb-6 p-4 bg-card border rounded-lg">
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-card-foreground mb-1 block">Дата</label>
+          <label className="text-base font-medium mb-1 block">Дата</label>
           <Input
             type="date"
             value={date}
@@ -36,7 +35,7 @@ const Factory = () => {
           />
         </div>
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-card-foreground mb-1 block">Время начала</label>
+          <label className="text-base font-medium mb-1 block">Время начала</label>
           <Input
             type="time"
             value={startTime}
@@ -46,7 +45,7 @@ const Factory = () => {
           />
         </div>
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-card-foreground mb-1 block">Время окончания</label>
+          <label className="text-base font-medium mb-1 block">Время окончания</label>
           <Input
             type="time"
             value={endTime}
@@ -78,23 +77,23 @@ const Factory = () => {
               <div className="h-[350px]">
                 <EquipmentLoadChart />
               </div>
-              <div className="mt-4 p-2 bg-muted rounded text-sm">
+              <div className="mt-4 p-2 bg-muted/30 rounded text-sm">
                 <p className="font-medium mb-2 text-base">Легенда цветов:</p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-purple-200 dark:bg-purple-800"></div>
+                    <div className="w-4 h-4 mr-2 bg-[hsl(var(--chart-primary))]"></div>
                     <span>Работа по программе</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-blue-200 dark:bg-blue-800"></div>
+                    <div className="w-4 h-4 mr-2 bg-[hsl(var(--chart-secondary))]"></div>
                     <span>Отключенные</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-yellow-200 dark:bg-yellow-800"></div>
+                    <div className="w-4 h-4 mr-2 bg-[hsl(var(--chart-tertiary))]"></div>
                     <span>В простое</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-green-200 dark:bg-green-800"></div>
+                    <div className="w-4 h-4 mr-2 bg-[hsl(var(--chart-quaternary))]"></div>
                     <span>В аварии</span>
                   </div>
                 </div>
@@ -145,16 +144,16 @@ const Factory = () => {
               <CardTitle className="text-xl font-semibold mb-2">Уровень завода</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-16 bg-muted rounded-md relative">
+              <div className="h-16 bg-muted/30 rounded-md relative">
                 <div 
-                  className="h-full bg-green-500 dark:bg-green-600 rounded-md" 
+                  className="h-full bg-[hsl(var(--chart-secondary))] rounded-md" 
                   style={{ width: '82%' }}
                 ></div>
-                <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-white">
+                <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold">
                   82%
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mt-2 text-center">
+              <p className="text-sm mt-2 text-center text-muted-foreground">
                 Общая эффективность производства
               </p>
             </CardContent>

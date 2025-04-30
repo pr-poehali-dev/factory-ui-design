@@ -1,55 +1,36 @@
+import { useEffect, useState } from "react";
 
-import { createContext, useContext, useEffect, useState } from "react";
+type Theme = "dark" | "light" | "system";
 
-type Theme = "light" | "dark";
-
-type ThemeProviderProps = {
-  children: React.ReactNode;
-};
-
-type ThemeContextType = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-  toggleTheme: () => void;
-};
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    
-    if (savedTheme) {
-      return savedTheme;
+    // Проверяем сохраненную тему в localStorage
+    const storedTheme = localStorage.getItem("theme") as Theme;
+    if (storedTheme) {
+      return storedTheme;
     }
-    
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    // Если нет сохраненной темы, используем системную
+    return "system";
   });
 
+  // Применяем тему к документу
   useEffect(() => {
     const root = window.document.documentElement;
+    
     root.classList.remove("light", "dark");
-    root.classList.add(theme);
+    
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      root.classList.add(systemTheme);
+    } else {
+      root.classList.add(theme);
+    }
+    
+    // Сохраняем тему в localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-};
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  
-  return context;
-};
+  return { theme, setTheme };
+}

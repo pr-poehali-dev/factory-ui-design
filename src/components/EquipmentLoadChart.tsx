@@ -1,48 +1,61 @@
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-// Данные для графика загрузки оборудования
 const data = [
   {
-    name: 'Цех №1',
-    работа: 30,
-    отключенные: 20,
-    простой: 15,
-    авария: 35,
+    name: "Цех №1",
+    "Работа по программе": 40,
+    "Отключенные": 30,
+    "В простое": 20,
+    "В аварии": 10,
   },
   {
-    name: 'Цех №2',
-    работа: 40,
-    отключенные: 10,
-    простой: 30,
-    авария: 20,
+    name: "Цех №2",
+    "Работа по программе": 45,
+    "Отключенные": 25,
+    "В простое": 20,
+    "В аварии": 10,
   },
   {
-    name: 'Цех №3',
-    работа: 20,
-    отключенные: 25,
-    простой: 25,
-    авария: 30,
+    name: "Цех №3",
+    "Работа по программе": 35,
+    "Отключенные": 25,
+    "В простое": 30,
+    "В аварии": 10,
   },
 ];
 
-export const EquipmentLoadChart = () => {
+const EquipmentLoadChart = () => {
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart
-        data={data}
-        layout="vertical"
-        margin={{ top: 10, right: 30, left: 60, bottom: 10 }}
-        stackOffset="expand"
-      >
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={data} layout="vertical" barCategoryGap={20}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis type="number" domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
-        <YAxis dataKey="name" type="category" />
-        <Bar dataKey="работа" stackId="a" fill="#e9d5ff" name="Работа по программе" />
-        <Bar dataKey="отключенные" stackId="a" fill="#bfdbfe" name="Отключенные" />
-        <Bar dataKey="простой" stackId="a" fill="#fef08a" name="В простое" />
-        <Bar dataKey="авария" stackId="a" fill="#bbf7d0" name="В аварии" />
+        <XAxis type="number" tickFormatter={(value) => `${value}%`} />
+        <YAxis
+          type="category"
+          dataKey="name"
+          tick={{ fontSize: 14 }}
+          width={80}
+        />
+        <Tooltip formatter={(value) => [`${value}%`]} />
+        <Legend />
+        <Bar
+          dataKey="Работа по программе"
+          stackId="a"
+          fill="#c7d2fe"
+          name="Работа по программе"
+        />
+        <Bar
+          dataKey="Отключенные"
+          stackId="a"
+          fill="#bfdbfe"
+          name="Отключенные"
+        />
+        <Bar dataKey="В простое" stackId="a" fill="#fef08a" name="В простое" />
+        <Bar dataKey="В аварии" stackId="a" fill="#bbf7d0" name="В аварии" />
       </BarChart>
     </ResponsiveContainer>
   );
 };
+
+export default EquipmentLoadChart;

@@ -18,7 +18,7 @@ const coefficientValues = [
   { name: 'Коэффициент потерь элеватора', value: '61 (↑13)' }
 ];
 
-export const CoefficientsChart = () => {
+const CoefficientsChart = () => {
   return (
     <div className="space-y-4">
       {/* Таблица с коэффициентами */}
@@ -74,3 +74,5 @@ export const CoefficientsChart = () => {
     </div>
   );
 };
+
+export default CoefficientsChart;

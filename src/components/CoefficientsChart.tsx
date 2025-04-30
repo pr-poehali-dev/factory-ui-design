@@ -1,5 +1,6 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useTheme } from '@/hooks/use-theme';
 
 // Обновленные данные в соответствии с изображением
 const data = [
@@ -19,10 +20,13 @@ const coefficientValues = [
 ];
 
 const CoefficientsChart = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <div className="space-y-4">
       {/* Таблица с коэффициентами */}
-      <div className="border rounded-md p-2 bg-gray-50 mb-2">
+      <div className={`border rounded-md p-2 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'} mb-2`}>
         <h3 className="font-medium mb-1 text-sm">Коэффициенты</h3>
         <div className="space-y-1">
           {coefficientValues.map((item, index) => (
@@ -41,16 +45,30 @@ const CoefficientsChart = () => {
             data={data}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
-            <Tooltip formatter={(value) => [`${value}%`]} />
-            <Legend />
+            <CartesianGrid strokeDasharray="3 3" stroke={isDark ? "#374151" : "#e5e7eb"} />
+            <XAxis 
+              dataKey="date" 
+              stroke={isDark ? "#9ca3af" : "#4b5563"}
+            />
+            <YAxis 
+              domain={[0, 100]} 
+              tickFormatter={(value) => `${value}%`}
+              stroke={isDark ? "#9ca3af" : "#4b5563"}
+            />
+            <Tooltip 
+              formatter={(value) => [`${value}%`]} 
+              contentStyle={{ 
+                backgroundColor: isDark ? "#1f2937" : "#ffffff", 
+                borderColor: isDark ? "#374151" : "#e5e7eb",
+                color: isDark ? "#e5e7eb" : "#111827"
+              }}
+            />
+            <Legend wrapperStyle={{ color: isDark ? "#e5e7eb" : "#111827" }} />
             <Line 
               type="monotone" 
               dataKey="готовность" 
               name="Коэффициент готовности" 
-              stroke="#4338ca" 
+              stroke="#6366f1" 
               activeDot={{ r: 8 }} 
               strokeWidth={2}
             />
@@ -58,7 +76,7 @@ const CoefficientsChart = () => {
               type="monotone" 
               dataKey="загрузка" 
               name="Коэффициент производственной загрузки" 
-              stroke="#16a34a" 
+              stroke="#22c55e" 
               strokeWidth={2}
             />
             <Line 

@@ -9,6 +9,7 @@ import CoefficientsChart from "@/components/CoefficientsChart";
 import StatusPieChart from "@/components/StatusPieChart";
 import EquipmentStatus from "@/components/EquipmentStatus";
 import ProductionStructure from "@/components/ProductionStructure";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const Factory = () => {
   const [date, setDate] = useState("");
@@ -17,12 +18,15 @@ const Factory = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6">Завод</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold">Завод</h1>
+        <ThemeSwitcher />
+      </div>
       
       {/* Фильтры и настройки */}
-      <div className="flex flex-wrap items-center gap-4 mb-6 p-4 bg-white border rounded-lg">
+      <div className="flex flex-wrap items-center gap-4 mb-6 p-4 bg-card border rounded-lg">
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-gray-700 mb-1 block">Дата</label>
+          <label className="text-base font-medium text-card-foreground mb-1 block">Дата</label>
           <Input
             type="date"
             value={date}
@@ -32,7 +36,7 @@ const Factory = () => {
           />
         </div>
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-gray-700 mb-1 block">Время начала</label>
+          <label className="text-base font-medium text-card-foreground mb-1 block">Время начала</label>
           <Input
             type="time"
             value={startTime}
@@ -42,7 +46,7 @@ const Factory = () => {
           />
         </div>
         <div className="flex-1 min-w-[200px]">
-          <label className="text-base font-medium text-gray-700 mb-1 block">Время окончания</label>
+          <label className="text-base font-medium text-card-foreground mb-1 block">Время окончания</label>
           <Input
             type="time"
             value={endTime}
@@ -74,23 +78,23 @@ const Factory = () => {
               <div className="h-[350px]">
                 <EquipmentLoadChart />
               </div>
-              <div className="mt-4 p-2 bg-gray-50 rounded text-sm">
+              <div className="mt-4 p-2 bg-muted rounded text-sm">
                 <p className="font-medium mb-2 text-base">Легенда цветов:</p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-purple-200"></div>
+                    <div className="w-4 h-4 mr-2 bg-purple-200 dark:bg-purple-800"></div>
                     <span>Работа по программе</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-blue-200"></div>
+                    <div className="w-4 h-4 mr-2 bg-blue-200 dark:bg-blue-800"></div>
                     <span>Отключенные</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-yellow-200"></div>
+                    <div className="w-4 h-4 mr-2 bg-yellow-200 dark:bg-yellow-800"></div>
                     <span>В простое</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 bg-green-200"></div>
+                    <div className="w-4 h-4 mr-2 bg-green-200 dark:bg-green-800"></div>
                     <span>В аварии</span>
                   </div>
                 </div>
@@ -141,16 +145,16 @@ const Factory = () => {
               <CardTitle className="text-xl font-semibold mb-2">Уровень завода</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-16 bg-gray-100 rounded-md relative">
+              <div className="h-16 bg-muted rounded-md relative">
                 <div 
-                  className="h-full bg-green-500 rounded-md" 
+                  className="h-full bg-green-500 dark:bg-green-600 rounded-md" 
                   style={{ width: '82%' }}
                 ></div>
-                <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold">
+                <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-white">
                   82%
                 </div>
               </div>
-              <p className="text-sm text-gray-500 mt-2 text-center">
+              <p className="text-sm text-muted-foreground mt-2 text-center">
                 Общая эффективность производства
               </p>
             </CardContent>
